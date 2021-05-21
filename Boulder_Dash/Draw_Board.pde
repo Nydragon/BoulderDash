@@ -32,7 +32,7 @@ class Draw_Board {
   }
   
   void drawPlayer() {
-    image(joueur, x, y, sizeCell, sizeCell);
+    image(joueur, x * sizeCell, y * sizeCell, sizeCell, sizeCell);
     if (isDead) {
       image(wasted, 0, 0, width, height);
     }  

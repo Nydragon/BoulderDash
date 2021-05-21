@@ -84,13 +84,13 @@ void draw() {
   
   
   
-  if (playingField[x/sizeCell][y/sizeCell] == doorElement && diamondCounter*0.80 <= diamondCollected) {
+  if (playingField[x][y] == doorElement && diamondCounter*0.80 <= diamondCollected) {
     setup();
   }
 }
 
 void diamondCollected() {
-  if (playingField[x/sizeCell][(y/sizeCell)] == diamondElement) {
+  if (playingField[x][y] == diamondElement) {
     diamondCollected++;
   }  
-}
+} 
