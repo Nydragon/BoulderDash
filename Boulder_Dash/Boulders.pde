@@ -4,8 +4,9 @@ class Boulder {
   
   void boulderBehave() {
     boulderCrush();
-    boulderLeft();
-    boulderRight();
+   // boulderLeft();
+    // boulderRight();
+    boulderDrop();
   }
   
   void boulderCrush() {
@@ -20,10 +21,32 @@ class Boulder {
       }
     } catch(Exception e) {}
   }
+  
+  void boulderDrop() {
+    for (int i = 0; i < width/sizeCell; i++) {
+      for (int j = 0; j < height/sizeCell; j++) {
+        if ((playingField[i][j] == boulderElement || playingField[i][j] == boulderDestroyedElement) && !(i * sizeCell == x && (j + 1) * sizeCell == y)) {
+         // println(x, y);
+          // iterating over every block that is below a boulder
+          for (int f = j; f < height/sizeCell; f++) {
+            println(f);
+            if (playingField[i][f] == walkedElement) {
+              playingField[i][f] = boulderElement;
+              //playingField[i][f < 0 ? f : f + 1] = walkedElement;
+            } 
+            //else {
+              //break;
+            //}
+          }
+        }
+      }
+    }
+  }
+  
 
   void boulderLeft() {
     try {
-      if ((playingField[x/sizeCell - 1][(y/sizeCell) - 1] == boulderElement) && (playingField[x/sizeCell - 1][y/sizeCell] == walkedElement)) {
+      if (((playingField[x/sizeCell - 1][(y/sizeCell) - 1] == boulderElement) || (playingField[x/sizeCell - 1][(y/sizeCell) - 1] == boulderDestroyedElement)) && (playingField[x/sizeCell - 1][y/sizeCell] == walkedElement)) {
         int boulderX = x/sizeCell - 1;
         int boulderY = y/sizeCell - 1;
         for (int i = 0; i < height/sizeCell; i++) {
@@ -41,7 +64,7 @@ class Boulder {
   
   void boulderRight() {
     try {
-        if ((playingField[x/sizeCell + 1][(y/sizeCell) - 1] == boulderElement) && (playingField[x/sizeCell + 1][y/sizeCell] == walkedElement)) {
+      if (((playingField[x/sizeCell + 1][(y/sizeCell) - 1] == boulderElement) || (playingField[x/sizeCell + 1][(y/sizeCell) - 1] == boulderDestroyedElement)) && (playingField[x/sizeCell + 1][y/sizeCell] == walkedElement)) {
         int boulderX = x/sizeCell + 1;
         int boulderY = y/sizeCell - 1;
         for (int i = 0; i < height/sizeCell; i++) {
